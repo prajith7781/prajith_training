@@ -1,0 +1,129 @@
+{
+  "customers": [
+    {
+      "_id": ObjectId,
+      "name": String,
+      "email": String,
+      "password": String,
+      "created_at": Date,
+      "updated_at": Date,
+      "shipping_address": {
+        "street": String,
+        "city": String,
+        "state": String,
+        "country": String,
+        "postal_code": String
+      },
+      "payment_methods": [
+        {
+          "card_type": String,
+          "card_number": String,
+          "expiration_date": String,
+          
+        }
+      ],
+      "orders": [ObjectId]
+    }
+  ],
+  "products": [
+    {
+      "_id": ObjectId,
+      "name": String,
+      "description": String,
+      "price": Number,
+      
+      "category": String,
+      "created_at": Date,
+      "updated_at": Date,
+      "reviews": [
+        {
+          "_id": ObjectId,
+          "customer_id": ObjectId,
+          "rating": Number,
+          "comment": String,
+          "created_at": Date
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "_id": ObjectId,
+      "customer_id": ObjectId,
+      "items": [
+        {
+          "product_id": ObjectId,
+          "quantity": Number
+        }
+      ],
+      "shipping_address": {
+        "street": String,
+        "city": String,
+        "state": String,
+        "country": String,
+        "postal_code": String
+      },
+      "payment_method": {
+        "card_type": String,
+        "card_number": String,
+        "expiration_date": String,
+       
+      },
+      "status": String,
+      "total_price": Number,
+      "created_at": Date,
+      "updated_at": Date
+    }
+  ]
+}
+
+
+
+ER
+
+
+                                          +---------------------+
+                                          |       customers      |
+                                          +---------------------+
+                                          | _id                 |
+                                          | name                |
+                                          | email               |
+                                          | password            |
+                                          | created_at          |
+                                          | updated_at          |
+                                          | shipping_address    |
+                                          | payment_methods     |
+                                          | orders              |
+                                          +---------------------+
+                                                   |
+                                                   |
+                        +--------------------------+-----------------------+
+                        |                                                  |
+                        |                                                  |
+                        |                                                  |
+             +---------------------+                            +---------------------+
+             |       products      |                            |       orders        |
+             +---------------------+                            +---------------------+
+             | _id                 |                            | _id                 |
+             | name                |                            | customer_id         |
+             | description         |                            | items               |
+             | price               |                            | shipping_address    |
+             | image_url           |                            | payment_method      |
+             | category            |                            | status              |
+             | created_at          |                            | total_price         |
+             | updated_at          |                            | created_at          |
+             | reviews             |                            | updated_at          |
+             +---------------------+                            +---------------------+
+                        |                                                  |
+                        |                                                  |
+                        |                                                  |
+              +---------------------+                            +---------------------+
+              |       reviews       |                            |  items              |
+              +---------------------+                            +---------------------+
+              | _id                 |                            | product_id          |
+              | customer_id         |                            | quantity            |
+              | rating              |                            +---------------------+
+              | comment             |
+              | created_at          |
+              +---------------------+
+
