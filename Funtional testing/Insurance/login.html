@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        
+        
+        background-size: cover;
+        background-position: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+        
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #3e8e41;
+      }
+      #message {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      #forgot {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+      }
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <button type="button" id="login-button" disabled onclick="login()"><a href="index.html">Login</a></button>
+      <a href="password_reset.html" id="forgot">Forgot Password?</a>
+    </form>
+    <p id="message"></p>
+
+    <script>
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const loginButton = document.getElementById("login-button");
+
+      const updateButtonState = () => {
+        if (usernameInput.value && passwordInput.value) {
+          loginButton.disabled = false;
+        } else {
+          loginButton.disabled = true;
+        }
+      };
+
+      usernameInput.addEventListener("input", updateButtonState);
+      passwordInput.addEventListener("input", updateButtonState);
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (username === "Prajith" && password === "prajith@23") {
+          document.getElementById("message").innerHTML = "Login successful!";
+        } else {
+          document.getElementById("message").innerHTML = "Incorrect username or password.";
+        }
+      }
+    </script>
+  </body>
+</html>

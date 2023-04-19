@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard | Policy Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <style>
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      li {
+        margin-bottom: 10px;
+      }
+      
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        cursor: pointer;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      
+  </style>
+  <body>
+    <h1>Dashboard</h1>
+    <ul>
+      <li>Policy 1 - $10</li>
+      <li>Policy 2 - $20</li>
+      <li>Policy 3 - $30</li>
+    </ul>
+    <form>
+      <label for="policy">Select a policy:</label>
+      <select id="policy" name="policy">
+        <option value="">Select a policy</option>
+        <option value="policy1">Policy 1</option>
+        <option value="policy2">Policy 2</option>
+        <option value="policy3">Policy 3</option>
+      </select><br><br>
+      <label for="payment">Payment method:</label>
+      <select id="payment" name="payment">
+        <option value="">Select a payment method</option>
+        <option value="creditcard">Credit card</option>
+        <option value="paypal">PayPal</option>
+      </select><br><br>
+      <input type="submit" value="Purchase">
+    </form>
+    <script>
+        const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
+  const policy = document.querySelector('#policy').value;
+  const payment = document.querySelector('#payment').value;
+  
+  if (policy && payment) {
+    window.location.href = 'confirmation.html';
+  } else {
+    alert('Please select a policy and payment method');
+  }
+});
+
+    </script>
+  </body>
+</html>
