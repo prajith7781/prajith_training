@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+          background-image: url('https://nordicapis.com/wp-content/uploads/Adopting-Open-Banking-APIs-Improves-Customer-Experience-1024x576.png');
+          background-size: 100%;
+          background-repeat: none;
+          
+        }
+    </style>
+    <h2>Deposit</h2>
+    <body>
+        
+<form id="deposit-form">
+    <label for="account-number">Account Number:</label><br>
+    <input type="text" id="account-number" name="accountNumber" required><br>
+    <label for="account holder name">Account Holder Name:</label><br>
+    <input type="text" id="account holder name" name="Account Holder Name" required><br>
+
+    <label for="deposit-amount">Deposit Amount:</label><br>
+    <input type="number" id="deposit-amount" name="depositAmount" required><br>
+
+    <button type="submit">Deposit</button><br>
+</form>
+<script>
+    // Handle deposit form submission
+document.querySelector('#deposit-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent the default form submit behavior
+
+    // Collect form data
+    var formData = new FormData(event.target);
+    var accountNumber = formData.get('accountNumber');
+    var depositAmount = parseFloat(formData.get('depositAmount'));
+
+    if (accountNumber==''){
+        alert('Please enter an account number');
+        return;
+    }
+
+    // Display success message and updated balance
+    if (depositAmount<=0){
+        alert('Please enter a valid deposit amount');
+        return;
+    }
+    else{
+        alert('Deposit successful');
+        
+    }
+    
+    var balanceElement = document.querySelector('#balance');
+    var currentBalance = parseFloat(balanceElement.innerText);
+    var updatedBalance = currentBalance + depositAmount;
+    balanceElement.innerText = updatedBalance.toFixed(2);
+});
+
+</script>
+</body>
+</html>
+

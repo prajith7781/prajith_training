@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <h2>Close Account</h2>    
+    <form id="close-account-form">
+        <label for="account-number">Account Number:</label><br>
+        <input type="text" id="account-number" name="accountNumber" required><br>
+        <button type="submit">Close Account</button><br>
+    </form>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            background-image: url('https://nordicapis.com/wp-content/uploads/Adopting-Open-Banking-APIs-Improves-Customer-Experience-1024x576.png');
+            background-size: 100%;
+            background-repeat: none;
+            
+          }
+          
+    </style>
+   
+    <script>
+        // Handle close account form submission
+document.querySelector('#close-account-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent the default form submit behavior
+
+    // Collect form data
+    var formData = new FormData(event.target);
+    var accountNumber = formData.get('accountNumber');
+
+    // TODO: Send account number to server-side code to close account
+
+    // Display success message and remove account from UI
+    alert('Account closed');
+    var accountElement = document.querySelector('#account-' + accountNumber);
+    accountElement.remove();
+});
+
+    </script>
+    </body>
+</html>

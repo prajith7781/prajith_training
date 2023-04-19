@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New Account Form</title>
+	<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      background-image: url('https://i.pinimg.com/originals/de/80/ca/de80ca4922b016784c86f80ee5c8966f.gif');
+      background-size: cover;
+      background-position: center;
+    }
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		input[type=text], select {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		}
+		input[type=submit] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+
+	<h2>New Account Form</h2>
+	<form>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+
+		<label for="address">Address:</label>
+		<input type="text" id="address" name="address" required>
+
+		<label for="email">Email:</label>
+		<input type="text" id="email" name="email" required>
+
+		<label for="phone">Phone:</label>
+		<input type="text" id="phone" name="phone" required>
+
+		<label for="accountType">Account Type:</label>
+		<select id="accountType" name="accountType">
+			<option value="savings">Savings</option>
+			<option value="checking">Checking</option>
+		</select>
+
+		<input type="submit" value="Create Account">
+	</form>
+  <script>
+    // Generate a random account number
+function generateAccountNumber() {
+  var accountNumber = "";
+  var possible = "0123456789";
+
+  for (var i = 0; i < 10; i++) {
+      accountNumber += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+
+  return accountNumber;
+}
+
+// Handle form submission
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the default form submit behavior
+
+  // Collect form data
+  var formData = new FormData(event.target);
+  var name = formData.get('name');
+  var address = formData.get('address');
+  var email = formData.get('email');
+  var phone = formData.get('phone');
+  var accountType = formData.get('accountType');
+
+  // Generate account number
+  var accountNumber = generateAccountNumber();
+
+  // Create account object
+  var account = {
+      name: name,
+      address: address,
+      email: email,
+      phone: phone,
+      accountType: accountType,
+      accountNumber: accountNumber,
+      balance: 0
+  };
+
+  // TODO: Send account object to server-side code for creation in the banking application
+
+  // Display account details
+  var accountSummary = document.createElement('div');
+  accountSummary.innerHTML = "<p>Account Number: " + accountNumber + "</p>" +
+                             "<p>Name: " + name + "</p>" +
+                             "<p>Address: " + address + "</p>" +
+                             "<p>Email: " + email + "</p>" +
+                             "<p>Phone: " + phone + "</p>" +
+                             "<p>Account Type: " + accountType + "</p>" +
+                             "<p>Balance: " + account.balance + "</p>";
+  document.body.appendChild(accountSummary);
+});
+
+  </script>
+</body>
+</html>
